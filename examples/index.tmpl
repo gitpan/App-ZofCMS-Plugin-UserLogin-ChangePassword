@@ -1,0 +1,16 @@
+{
+    body => \'index.tmpl',
+    title => '',
+
+    plugins => [
+        { UserLogin                   => 200  },
+        { 'UserLogin::ChangePassword' => 1000 },
+    ],
+
+    plug_user_login_change_password => {
+        dsn     => "DBI:mysql:database=hl;host=localhost",
+        login   => 'test',
+        pass    => 'test',
+    },
+}
+
