@@ -10,9 +10,6 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More' => 0,
     },
-    build_recommends => {
-        'App::ZofCMS::Test::Plugin' => '0.0104',
-    },
     requires => {
         'App::ZofCMS::Plugin::Base' => 0.0105,
         'DBI'                       => 1.607,

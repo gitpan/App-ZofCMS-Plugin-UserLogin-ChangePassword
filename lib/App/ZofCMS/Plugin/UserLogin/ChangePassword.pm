@@ -3,7 +3,7 @@ package App::ZofCMS::Plugin::UserLogin::ChangePassword;
 use warnings;
 use strict;
 
-our $VERSION = '0.0101';
+our $VERSION = '0.0110';
 
 use base 'App::ZofCMS::Plugin::Base';
 use DBI;
@@ -20,12 +20,15 @@ sub _defaults {
     login   => sub { $_[0]{d}{user}{login} },
     key     => 'change_pass_form',
     min     => 4,
+    submit_button => q|<input type="submit" class="input_submit"|
+        . q| name="plug_user_login_change_password_submit"|
+        . q| value="Change password">|,
 }
 sub _do {
     my ( $self, $conf, $t, $q, $config ) = @_;
 
     unless ( $q->{plug_user_login_change_password_submit} ) {
-        $t->{t}{ $conf->{key} } = _make_form($q);
+        $t->{t}{ $conf->{key} } = _make_form($q, undef, $conf);
         return;
     }
 
@@ -83,6 +86,7 @@ sub _make_form {
     $temp->param(
         dir => $q->{dir},
         page => $q->{page},
+        submit_button => $conf->{submit_button},
     );
 
     unless ( defined $t ) {
@@ -103,7 +107,7 @@ sub _make_form {
 sub _form_template {
     return <<'END';
 <tmpl_if name='change_ok'>
-    <p id="plug_user_login_change_password_ok">Your password has been successfully changed</p>
+    <p id="plug_user_login_change_password_ok" class="success-message">Your password has been successfully changed</p>
 <tmpl_else>
     <form action="" method="POST" id="plug_user_login_change_password_form">
     <div>
@@ -126,7 +130,7 @@ sub _form_template {
                 ><input type="password" class="input_password" name="plug_user_login_change_password_repass" id="plug_user_login_change_password_repass">
             </li>
         </ul>
-        <input type="submit" class="input_submit" name="plug_user_login_change_password_submit" value="Change password">
+        <tmpl_var name='submit_button'>
     </div>
     </form>
 </tmpl_if>
@@ -192,6 +196,9 @@ include UserLogin plugin with lower priority sequence to execute earlier.
         login   => sub { $_[0]{d}{user}{login} },
         key     => 'change_pass_form',
         min     => 4,
+        submit_button => q|<input type="submit" class="input_submit"|
+            . q| name="plug_user_login_change_password_submit"|
+            . q| value="Change password">|,
     },
 
     # or set arguments via a subref
@@ -296,6 +303,19 @@ B<Defaults to:> C<change_pass_form>
 B<Optional>. Takes a positive intereger or zero as a value. Specifies
 the minimum C<length()> of the new password. B<Defaults to:> C<4>
 
+=head3 C<submit_button>
+
+    plug_user_login_change_password => sub {
+        submit_button => q|<input type="submit" class="input_submit"|
+            . q| name="plug_user_login_change_password_submit"|
+            . q| value="Change password">|,
+    },
+
+B<Optional>. Takes a string of HTML code as a value. Specifies the
+code for the submit button of the form; feel free to add any extra
+code you might require as well. B<Defaults to:>
+C<< <input type="submit" class="input_submit"  name="plug_user_login_change_password_submit" value="Change password"> >>
+
 =head1 PLUGIN'S HTML AND OUTPUT
 
 The plugin uses key in C<{t}> special key that is specified via C<key> plugin's configuration
@@ -314,7 +334,7 @@ password changes. It is shown here for you to know how to style your password ch
 form/success message properly:
 
     <tmpl_if name='change_ok'>
-        <p id="plug_user_login_change_password_ok">Your password has been successfully changed</p>
+        <p id="plug_user_login_change_password_ok" class="success-message">Your password has been successfully changed</p>
     <tmpl_else>
         <form action="" method="POST" id="plug_user_login_change_password_form">
         <div>
