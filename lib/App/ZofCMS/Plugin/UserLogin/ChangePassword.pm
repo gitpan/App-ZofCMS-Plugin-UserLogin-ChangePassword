@@ -3,11 +3,11 @@ package App::ZofCMS::Plugin::UserLogin::ChangePassword;
 use warnings;
 use strict;
 
-our $VERSION = '0.0110';
+our $VERSION = '0.0111';
 
 use base 'App::ZofCMS::Plugin::Base';
 use DBI;
-use Digest::MD5 qw/md5_hex/;
+use Digest::MD5 (qw/md5_hex/);
 use HTML::Template;
 
 sub _key { 'plug_user_login_change_password' }
@@ -139,6 +139,8 @@ END
 
 1;
 __END__
+
+=encoding utf8
 
 =head1 NAME
 

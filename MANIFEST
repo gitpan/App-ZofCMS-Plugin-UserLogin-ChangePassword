@@ -2,10 +2,13 @@ Build.PL
 Changes
 MANIFEST
 README
+LICENSE
 lib/App/ZofCMS/Plugin/UserLogin/ChangePassword.pm
 examples/index.tmpl
 t/00-load.t
-t/pod-coverage.t
-t/pod.t
+xt/pod-coverage.t
+xt/pod.t
+xt/kwalitee.t
 Makefile.PL
 META.yml
+META.json

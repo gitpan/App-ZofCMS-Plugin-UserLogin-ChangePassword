@@ -1,0 +1,50 @@
+{
+   "abstract" : "UserLogin plugin suppliment for changing user passwords",
+   "author" : [
+      "'Zoffix <'zoffix@cpan.org'>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132830",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "App-ZofCMS-Plugin-UserLogin-ChangePassword",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "App::ZofCMS::Plugin::Base" : "0.0105",
+            "DBI" : "1.607",
+            "Digest::MD5" : "2.36_01",
+            "HTML::Template" : "2.9",
+            "perl" : "5.006"
+         }
+      }
+   },
+   "provides" : {
+      "App::ZofCMS::Plugin::UserLogin::ChangePassword" : {
+         "file" : "lib/App/ZofCMS/Plugin/UserLogin/ChangePassword.pm",
+         "version" : "0.0111"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.0111"
+}

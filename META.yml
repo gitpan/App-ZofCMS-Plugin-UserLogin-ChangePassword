@@ -5,8 +5,9 @@ author:
 build_requires:
   Test::More: 0
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3607'
+  Module::Build: 0
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4007, CPAN::Meta::Converter version 2.132830'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -15,12 +16,13 @@ name: App-ZofCMS-Plugin-UserLogin-ChangePassword
 provides:
   App::ZofCMS::Plugin::UserLogin::ChangePassword:
     file: lib/App/ZofCMS/Plugin/UserLogin/ChangePassword.pm
-    version: 0.0110
+    version: 0.0111
 requires:
   App::ZofCMS::Plugin::Base: 0.0105
   DBI: 1.607
   Digest::MD5: 2.36_01
   HTML::Template: 2.9
+  perl: 5.006
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.0110
+version: 0.0111
